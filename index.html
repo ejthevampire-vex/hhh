@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08070b">
+  <title>Vex</title>
+  <style>
+    :root {
+      --bg: #08070b;
+      --ink: #f5f1f8;
+      --muted: #b8aebe;
+      --glass: rgba(255,255,255,.06);
+      --line: rgba(255,255,255,.11);
+    }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; margin: 0; }
+    body {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 20% 15%, rgba(151, 72, 173, .18), transparent 35%),
+        radial-gradient(circle at 82% 78%, rgba(96, 54, 132, .18), transparent 38%),
+        linear-gradient(145deg, #050407, #0e0a12 55%, #08070b);
+      font-family: ui-serif, Georgia, "Times New Roman", serif;
+    }
+    body::before, body::after {
+      content: "";
+      position: fixed;
+      width: 42vmax;
+      height: 42vmax;
+      border: 1px solid rgba(255,255,255,.055);
+      border-radius: 50%;
+      filter: blur(.2px);
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+    body::before { top: -22vmax; right: -10vmax; }
+    body::after { bottom: -24vmax; left: -9vmax; animation-delay: -7s; }
+    @keyframes drift {
+      to { transform: translate3d(2.5vmax, 2vmax, 0) scale(1.08); }
+    }
+    main {
+      position: relative;
+      width: min(88vw, 760px);
+      padding: clamp(34px, 7vw, 78px);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: var(--glass);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      box-shadow: 0 32px 90px rgba(0,0,0,.45);
+    }
+    .sigil {
+      width: 34px;
+      height: 34px;
+      margin-bottom: 34px;
+      opacity: .72;
+    }
+    .sigil::before, .sigil::after {
+      content: "";
+      position: absolute;
+      width: 32px;
+      height: 1px;
+      background: currentColor;
+      transform-origin: center;
+    }
+    .sigil::before { transform: translateY(16px) rotate(45deg); }
+    .sigil::after  { transform: translateY(16px) rotate(-45deg); }
+    .message {
+      font-size: clamp(2rem, 6vw, 5.2rem);
+      line-height: .98;
+      letter-spacing: -.045em;
+      text-wrap: balance;
+    }
+    .foot {
+      margin-top: 42px;
+      font: 500 .68rem/1.2 ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="sigil" aria-hidden="true"></div>
+
+    <!-- CHANGE ONLY THE TEXT INSIDE THIS ELEMENT -->
+    <div class="message">place holder text</div>
+
+    <div class="foot">VEX / PRIVATE MESSAGE</div>
+  </main>
+</body>
+</html>
